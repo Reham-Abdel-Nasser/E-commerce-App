@@ -13,7 +13,7 @@ export async function getUserOrder() {
     throw new Error("Login First");
   }
 
-  const { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/orders/user/${id}`)
+  const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/orders/user/${id}`)
 
   return data
 }
