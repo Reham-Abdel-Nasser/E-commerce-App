@@ -5,6 +5,8 @@ import { CartItem, Order, Orders } from "@/types/order.type";
 import Image from "next/image";
 import React from "react";
 import StatusMonitor from "../_components/StatusMonitor/StatusMonitor";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { ListOrderedIcon } from "lucide-react";
 
 // const statuses = [
 //   { value: "online", label: "Online" },
@@ -16,6 +18,23 @@ const AllOrders = async () => {
   const data: Orders = await getUserOrder();
 
   console.log(data);
+
+  if(data.length === 0) {
+    return (
+    <div className="p-6 flex items-center justify-center">
+        <div className="flex flex-col items-center justify-center h-[70vh]">
+            <Alert className="max-w-md flex flex-col items-center text-center">
+            <ListOrderedIcon className="h-50 w-50 mb-2 fill-[#0aad0a]" color="#0aad0a" /> {/* Use color prop */}
+            <AlertTitle>Your All Orders is Empty</AlertTitle>
+            <AlertDescription>
+              Browse products and add some to your All Orders!
+            </AlertDescription>
+            </Alert>
+        </div>
+      </div>
+    );
+  }
+  
 
   return (
     // <div className='md:w-[80%] mx-auto w-full my-10 px-5 md:px-0 '>
